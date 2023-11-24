@@ -1,19 +1,25 @@
 package com.example;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
 import java.util.Arrays;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 public class AppTest {
 
+    private Cart cart;
+
+    @Before
+    public void setUp() {
+        cart = new Cart();
+    }
+
     @Test
     public void testAddProductToCart() {
-        Cart cart = new Cart();
         Product laptop = new Product(1, "Laptop", 1000.0);
 
         cart.addProduct(laptop);
@@ -24,7 +30,6 @@ public class AppTest {
 
     @Test
     public void testRemoveProductFromCart() {
-        Cart cart = new Cart();
         Product laptop = new Product(1, "Laptop", 1000.0);
 
         cart.addProduct(laptop);
@@ -43,7 +48,6 @@ public class AppTest {
         eCommerceSystem.placeOrder(cartMock);
 
         verify(cartMock, times(2)).addProduct(any(Product.class));
-
     }
 
     @Test
